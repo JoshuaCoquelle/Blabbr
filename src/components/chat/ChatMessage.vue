@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div>ChatMessage</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'ChatMessage'
 }
 </script>

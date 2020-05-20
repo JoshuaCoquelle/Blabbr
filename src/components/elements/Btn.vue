@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div>Btn</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'Btn'
 }
 </script>

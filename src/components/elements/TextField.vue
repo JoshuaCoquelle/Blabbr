@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <div>TextField</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'TextField'
 }
 </script>
