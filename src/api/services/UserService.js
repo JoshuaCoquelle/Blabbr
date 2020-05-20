@@ -8,7 +8,7 @@ export default class UserService {
    * @param {string} password
    * @returns {promise}
    */
-  static createUser (email, password) {
+  static register (email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
 
@@ -19,7 +19,7 @@ export default class UserService {
    * @param {string} password
    * @returns {promise}
    */
-  loginUser (email, password) {
+  static login (email, password) {
     return auth.signInWithEmailAndPassword(email, password)
   }
 
@@ -28,7 +28,7 @@ export default class UserService {
    *
    * @returns {promise}
    */
-  logoutUser () {
+  static logout () {
     auth.signOut()
   }
 }

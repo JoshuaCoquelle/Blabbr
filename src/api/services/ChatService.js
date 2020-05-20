@@ -3,12 +3,29 @@ import store from '@/store'
 
 export default class ChatService {
   /**
-   * Channels collection.
+   * Get channels collection from Firestore.
    *
-   * @returns channels[]
+   * @returns Firestore channels collection
    */
   static get channels () {
     return database.collection('channels')
+  }
+
+  /**
+   * Push a new channel to the Firestore DB.
+   *
+   * @param {string} channelName
+   * @returns {void}
+   */
+  static newChannel (channelName) {
+    ChatService.channels.add({
+      name: channelName,
+      ms: Date.now()
+    })
+  }
+
+  static setActiveChannel (activeChannel) {
+    store.commit('setActiveChannel', activeChannel)
   }
 
   /**
@@ -20,6 +37,7 @@ export default class ChatService {
       const channels = []
       querySnapshot.forEach(doc => channels.push(doc.data()))
       store.commit('setChannels', channels)
+      ChatService.setActiveChannel(store.state.channels[0])
     })
   }
 }
