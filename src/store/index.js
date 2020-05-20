@@ -5,11 +5,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    messages: [],
+    channels: [],
+    activeChannel: []
   },
+
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    setChannels (state, channels) {
+      state.channels = channels
+    },
+
+    setMessages (state, messages) {
+      state.messages = messages
+    },
+
+    setActiveChannel (state, channel) {
+      state.activeChannel = channel
+    }
   }
 })

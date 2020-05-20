@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AppScreen from '../views/AppScreen.vue'
+import AppScreen from '@/screens/AppScreen'
 
 Vue.use(VueRouter)
 
