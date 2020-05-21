@@ -5,21 +5,21 @@
 </template>
 
 <script>
-import ChatService from '@/api/services/ChatService'
+import ChannelService from '@/api/services/ChannelService'
 import MessageService from '@/api/services/MessageService'
 
 export default {
   name: 'App',
 
   methods: {
-    openSockets () {
-      ChatService.openChannelSocket()
-      MessageService.openMessageSocket()
+    bindStreamListeners () {
+      ChannelService.channelStreamHandler()
+      MessageService.messageStreamHandler()
     }
   },
 
   mounted () {
-    this.openSockets()
+    this.bindStreamListeners()
   }
 }
 </script>

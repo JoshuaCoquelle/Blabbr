@@ -26,7 +26,7 @@
     <v-toolbar-title>
       <h4
         class="font-weight-bold pb-1"
-        v-text="userData.displayName || ''"
+        v-text="userData.displayName"
       />
     </v-toolbar-title>
   </v-app-bar>
@@ -75,6 +75,7 @@
           <Btn
             color="primary"
             class="mb-5"
+            block
             @click="newChannelHandler"
           >
             Add Channel +
@@ -84,6 +85,7 @@
           <Btn
             color="red"
             outlined
+            block
             @click="logoutUser"
           >
             Logout
@@ -98,7 +100,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import ChatService from '@/api/services/ChatService'
+import ChannelService from '@/api/services/ChannelService'
 import Window from '@/components/layout/Window'
 import Btn from '@/components/elements/Btn'
 
@@ -140,7 +142,7 @@ export default {
      * @returns {void}
      */
     newChannelHandler () {
-      ChatService.newChannel(this.newChannelName)
+      ChannelService.newChannel(this.newChannelName)
     },
 
     /**
@@ -150,7 +152,7 @@ export default {
      */
     activeChannelHandler (activeChannel) {
       this.drawer = !this.drawer
-      ChatService.setActiveChannel(activeChannel)
+      ChannelService.setActiveChannel(activeChannel)
     }
   }
 }

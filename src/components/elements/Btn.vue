@@ -3,8 +3,6 @@
     v-bind="$attrs"
     v-on=$listeners
     depressed
-    dark
-    block
   >
     <slot />
   </v-btn>

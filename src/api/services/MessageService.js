@@ -34,8 +34,8 @@ export default class MessageService {
    * Opens socket to listen for new messages from Firestore
    * then updates the stores `messages` state.
    */
-  static openMessageSocket () {
-    MessageService.messages.onSnapshot(querySnapshot => {
+  static messageStreamHandler () {
+    MessageService.messages.orderBy('ms', 'asc').onSnapshot(querySnapshot => {
       const messages = []
       querySnapshot.forEach(doc => messages.push(doc.data()))
       store.commit('setMessages', messages)

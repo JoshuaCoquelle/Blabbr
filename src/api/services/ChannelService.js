@@ -1,7 +1,7 @@
 import database from '@/api/database'
 import store from '@/store'
 
-export default class ChatService {
+export default class ChannelService {
   /**
    * Get channels collection from Firestore.
    *
@@ -18,7 +18,7 @@ export default class ChatService {
    * @returns {void}
    */
   static newChannel (channelName) {
-    ChatService.channels.add({
+    ChannelService.channels.add({
       name: channelName,
       ms: Date.now()
     })
@@ -32,12 +32,12 @@ export default class ChatService {
    * Opens socket to listen for new channels from Firestore
    * then updates the stores `channels` state.
    */
-  static openChannelSocket () {
-    ChatService.channels.onSnapshot(querySnapshot => {
+  static channelStreamHandler () {
+    ChannelService.channels.orderBy('ms', 'asc').onSnapshot(querySnapshot => {
       const channels = []
       querySnapshot.forEach(doc => channels.push(doc.data()))
       store.commit('setChannels', channels)
-      ChatService.setActiveChannel(store.state.channels[0])
+      ChannelService.setActiveChannel(store.state.channels[0])
     })
   }
 }

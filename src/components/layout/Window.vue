@@ -1,7 +1,7 @@
 <template>
   <!-- chat content -->
   <v-content>
-    <v-container class="half-width">
+    <v-container>
       <v-row>
         <v-col>
           <h3>
@@ -11,7 +11,8 @@
             {{ activeChannel.name }}
           </h3>
 
-          <div v-if="activeChannel">
+          <!-- message list -->
+          <div v-if="activeChannel.messages.length">
             <ChatMessage
               v-for="(data, index) in activeChannel.messages" :key="index"
               :message="data.message"
@@ -21,6 +22,12 @@
             />
           </div>
 
+          <!-- empty state message -->
+          <p class="grey--text text--darken-4 mt-8 text-center" v-else>
+            It's quiet in here.. too quiet.
+          </p>
+
+          <!-- chat input -->
           <v-textarea
             v-model="message"
             row-height="2"
@@ -30,7 +37,8 @@
             class="mt-8"
           ></v-textarea>
 
-          <v-btn
+          <!-- new message button -->
+          <!-- <v-btn
             large
             depressed
             :block="isMobile"
@@ -39,7 +47,16 @@
             @click="newMessageHandler"
           >
             Yak Away <v-icon class="pl-3">mdi-send</v-icon>
-          </v-btn>
+          </v-btn> -->
+
+          <Btn
+            large
+            color="primary"
+            :block="isMobile"
+            @click="newMessageHandler"
+          >
+            Yak Away <v-icon class="pl-3">mdi-send</v-icon>
+          </Btn>
         </v-col>
       </v-row>
     </v-container>
@@ -50,6 +67,7 @@
 import { mapGetters } from 'vuex'
 import MessageService from '@/api/services/MessageService'
 import ChatMessage from '@/components/chat/ChatMessage'
+import Btn from '@/components/elements/Btn'
 
 export default {
   name: 'Window',
@@ -61,7 +79,8 @@ export default {
   },
 
   components: {
-    ChatMessage
+    ChatMessage,
+    Btn
   },
 
   methods: {

@@ -1,5 +1,5 @@
 <template>
-
+  <div>SideDrawer</div>
 </template>
 
 <script>
