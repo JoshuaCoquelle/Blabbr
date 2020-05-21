@@ -38,21 +38,10 @@
           ></v-textarea>
 
           <!-- new message button -->
-          <!-- <v-btn
-            large
-            depressed
-            :block="isMobile"
-            color="primary"
-            class="font-weight-bold"
-            @click="newMessageHandler"
-          >
-            Yak Away <v-icon class="pl-3">mdi-send</v-icon>
-          </v-btn> -->
-
           <Btn
             large
             color="primary"
-            :block="isMobile"
+            :block="$vuetify.breakpoint.xsOnly"
             @click="newMessageHandler"
           >
             Yak Away <v-icon class="pl-3">mdi-send</v-icon>
@@ -70,7 +59,7 @@ import ChatMessage from '@/components/chat/ChatMessage'
 import Btn from '@/components/elements/Btn'
 
 export default {
-  name: 'Window',
+  name: 'MainChatWindow',
 
   data () {
     return {
@@ -91,13 +80,6 @@ export default {
    */
     newMessageHandler () {
       MessageService.newMessage(this.message)
-    }
-  },
-
-  props: {
-    isMobile: {
-      type: Boolean,
-      required: true
     }
   },
 
