@@ -12,7 +12,7 @@
           </h3>
 
           <!-- message list -->
-          <div v-if="activeChannel.messages.length">
+          <div v-if="activeChannel.hasMessages">
             <ChatMessage
               v-for="(data, index) in activeChannel.messages" :key="index"
               :message="data.message"
@@ -74,12 +74,13 @@ export default {
 
   methods: {
   /**
-   * Push a new message to the Firestore DB.
+   * Push a new message to the Firestore DB and clears the field.
    *
    * @returns {void}
    */
     newMessageHandler () {
       MessageService.newMessage(this.message)
+      this.message = ''
     }
   },
 

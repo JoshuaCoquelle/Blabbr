@@ -100,7 +100,7 @@ export default {
         await authCall(authPayload)
         this.$router.replace('/')
       } catch (error) {
-        console.error(error)
+        this.$emit('authError')
       }
     },
 

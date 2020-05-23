@@ -10,6 +10,7 @@
         <!-- dynamic login/registration form -->
         <AuthForm
           ref="authForm"
+          @authError="authSnackbarVisible = true"
           :is-login="authFormMeta.isLogin"
         />
 
@@ -23,6 +24,16 @@
         </div>
       </v-col>
     </v-row>
+
+    <!-- auth error message snackbar -->
+    <v-snackbar
+      v-model="authSnackbarVisible"
+      :timeout="4500"
+      color="error"
+      multi-line
+    >
+      <strong>Sorry, your credentials are invalid.</strong>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -35,7 +46,8 @@ export default {
   data () {
     return {
       loginMessage: 'Don\'t have an account?',
-      registerMessage: 'Have an account already?'
+      registerMessage: 'Have an account already?',
+      authSnackbarVisible: false
     }
   },
 

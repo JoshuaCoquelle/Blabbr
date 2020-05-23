@@ -36,9 +36,8 @@ export default new Vuex.Store({
     activeChannel ({ messages, activeChannel }) {
       return {
         name: activeChannel?.name,
-        messages: messages.filter(
-          message => message.channel === activeChannel?.name
-        )
+        messages: messages.filter(message => message.channel === activeChannel?.name),
+        hasMessages: !!messages.length
       }
     }
   },

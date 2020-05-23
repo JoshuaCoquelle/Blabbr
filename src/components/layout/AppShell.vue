@@ -131,6 +131,7 @@ export default {
      */
     newChannelHandler () {
       ChannelService.newChannel(this.newChannelName)
+      this.newChannelName = ''
     },
 
     /**
