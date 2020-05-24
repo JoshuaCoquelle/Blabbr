@@ -13,7 +13,7 @@
       required
       outlined
       class="mb-3"
-    ></v-text-field>
+    />
 
     <!-- email -->
     <v-text-field
@@ -23,7 +23,7 @@
       required
       outlined
       class="mb-3"
-    ></v-text-field>
+    />
 
     <!-- password -->
     <v-text-field
@@ -34,7 +34,7 @@
       required
       outlined
       class="mb-3"
-    ></v-text-field>
+    />
 
     <v-btn
       block
@@ -54,6 +54,13 @@
 import { mapActions } from 'vuex'
 
 export default {
+  props: {
+    isLogin: {
+      type: Boolean,
+      required: true
+    }
+  },
+
   data () {
     return {
       username: '',
@@ -68,13 +75,6 @@ export default {
         v => !!v || 'email is required',
         v => /.+@.+\..+/.test(v) || 'email must be valid'
       ]
-    }
-  },
-
-  props: {
-    isLogin: {
-      type: Boolean,
-      required: true
     }
   },
 

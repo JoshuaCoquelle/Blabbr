@@ -80,7 +80,7 @@ export default new Vuex.Store({
      * @returns void
      */
     async logoutUser ({ commit }) {
-      await UserService.logout()
+      UserService.logout()
       commit('setUser', null)
     },
 

@@ -5,7 +5,11 @@
       <v-row>
         <v-col>
           <h3>
-            <v-icon small color="blue" class="pr-3 pb-1">
+            <v-icon
+              small
+              color="blue"
+              class="pr-3 pb-1"
+            >
               mdi-pound
             </v-icon>
             {{ activeChannel.name }}
@@ -14,7 +18,8 @@
           <!-- message list -->
           <div v-if="activeChannel.hasMessages">
             <ChatMessage
-              v-for="(data, index) in activeChannel.messages" :key="index"
+              v-for="(data, index) in activeChannel.messages"
+              :key="index"
               :message="data.message"
               :author="data.author"
               :timestamp="data.timestamp"
@@ -23,7 +28,10 @@
           </div>
 
           <!-- empty state message -->
-          <p class="grey--text text--darken-4 mt-8 text-center" v-else>
+          <p
+            v-else
+            class="grey--text text--darken-4 mt-8 text-center"
+          >
             It's quiet in here.. too quiet.
           </p>
 
@@ -35,7 +43,7 @@
             auto-grow
             label="What's up?"
             class="mt-8"
-          ></v-textarea>
+          />
 
           <!-- new message button -->
           <Btn
@@ -44,7 +52,9 @@
             :block="$vuetify.breakpoint.xsOnly"
             @click="newMessageHandler"
           >
-            Yak Away <v-icon class="pl-3">mdi-send</v-icon>
+            Yak Away <v-icon class="pl-3">
+              mdi-send
+            </v-icon>
           </Btn>
         </v-col>
       </v-row>
@@ -61,15 +71,19 @@ import Btn from '@/components/elements/Btn'
 export default {
   name: 'MainChatWindow',
 
+  components: {
+    ChatMessage,
+    Btn
+  },
+
   data () {
     return {
       message: ''
     }
   },
 
-  components: {
-    ChatMessage,
-    Btn
+  computed: {
+    ...mapGetters(['activeChannel'])
   },
 
   methods: {
@@ -82,10 +96,6 @@ export default {
       MessageService.newMessage(this.message)
       this.message = ''
     }
-  },
-
-  computed: {
-    ...mapGetters(['activeChannel'])
   }
 }
 </script>

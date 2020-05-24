@@ -1,8 +1,8 @@
 <template>
   <v-btn
-    v-bind="$attrs"
-    v-on=$listeners
     depressed
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <slot />
   </v-btn>

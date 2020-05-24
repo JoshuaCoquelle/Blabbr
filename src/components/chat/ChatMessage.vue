@@ -15,13 +15,13 @@
 
       <!-- message content -->
       <p
-        v-text="message"
         class="grey--text text--darken-4 mb-1"
+        v-text="message"
       />
 
       <p
-        v-text="timestamp"
         class="mb-0"
+        v-text="timestamp"
       />
     </v-card-text>
   </v-card>
@@ -44,7 +44,7 @@ export default {
 
     timestamp: {
       type: String,
-      required: false
+      required: true
     }
   }
 }

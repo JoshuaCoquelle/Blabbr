@@ -1,40 +1,42 @@
 <template>
   <div>
-  <v-app-bar
-    app
-    flat
-    color="blue"
-    dark
-    v-bind="$attrs"
-  >
-    <!-- drawer trigger -->
-    <v-app-bar-nav-icon
-      v-if="$vuetify.breakpoint.xsOnly"
-      @click.stop="drawer = !drawer"
-    />
-
-    <!-- nav branding -->
-    <v-toolbar-title class="pl-0">
-      <h3 class="font-weight-bold">
-        KnakYak <v-icon class="pl-1 pb-2">mdi-chat</v-icon>
-      </h3>
-    </v-toolbar-title>
-
-    <v-spacer />
-
-    <!-- user display name -->
-    <v-toolbar-title>
-      <h4
-        class="font-weight-bold pb-1"
-        v-text="userData.displayName"
+    <v-app-bar
+      app
+      flat
+      color="blue"
+      dark
+      v-bind="$attrs"
+    >
+      <!-- drawer trigger -->
+      <v-app-bar-nav-icon
+        v-if="$vuetify.breakpoint.xsOnly"
+        @click.stop="drawer = !drawer"
       />
-    </v-toolbar-title>
-  </v-app-bar>
+
+      <!-- nav branding -->
+      <v-toolbar-title class="pl-0">
+        <h3 class="font-weight-bold">
+          KnakYak <v-icon class="pl-1 pb-2">
+            mdi-chat
+          </v-icon>
+        </h3>
+      </v-toolbar-title>
+
+      <v-spacer />
+
+      <!-- user display name -->
+      <v-toolbar-title>
+        <h4
+          class="font-weight-bold pb-1"
+          v-text="userData.displayName"
+        />
+      </v-toolbar-title>
+    </v-app-bar>
 
     <!-- application side navigation -->
     <v-navigation-drawer
-      app
       v-model="drawer"
+      app
       :permanent="!$vuetify.breakpoint.xsOnly"
     >
       <!-- channel panel -->
@@ -49,13 +51,17 @@
         <v-list-item
           v-for="(data, index) in $store.state.channels"
           :key="index"
-          @click="activeChannelHandler(data)"
           link
+          @click="activeChannelHandler(data)"
         >
           <v-list-item-title class="py-sm-4">
-              <v-icon small color="blue" class="pr-3 pb-1">
-                mdi-pound
-              </v-icon> {{ data.name }}
+            <v-icon
+              small
+              color="blue"
+              class="pr-3 pb-1"
+            >
+              mdi-pound
+            </v-icon> {{ data.name }}
           </v-list-item-title>
         </v-list-item>
       </v-list>
@@ -65,11 +71,11 @@
         <div class="pa-2">
           <!-- new channel field -->
           <v-text-field
-            clearable
             v-model="newChannelName"
+            clearable
             label="new channel name"
             required
-          ></v-text-field>
+          />
 
           <!-- add new channel button -->
           <Btn
@@ -106,6 +112,10 @@ import Btn from '@/components/elements/Btn'
 export default {
   name: 'AppScreen',
 
+  components: {
+    Btn
+  },
+
   data () {
     return {
       drawer: null,
@@ -115,10 +125,6 @@ export default {
 
   computed: {
     ...mapGetters(['userData'])
-  },
-
-  components: {
-    Btn
   },
 
   methods: {

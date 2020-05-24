@@ -4,14 +4,16 @@
       <v-col>
         <!-- auth screen title -->
         <h3 class="primary--text text-center mb-10 font-weight-bold display-1">
-          KnakYak <v-icon class="primary--text pl-1 display-1"> mdi-chat-outline </v-icon>
+          KnakYak <v-icon class="primary--text pl-1 display-1">
+            mdi-chat-outline
+          </v-icon>
         </h3>
 
         <!-- dynamic login/registration form -->
         <AuthForm
           ref="authForm"
-          @authError="authSnackbarVisible = true"
           :is-login="authFormMeta.isLogin"
+          @authError="authSnackbarVisible = true"
         />
 
         <!-- auth messaging/route link -->
@@ -43,6 +45,10 @@ import AuthForm from '@/components/forms/AuthForm'
 export default {
   name: 'AuthScreen',
 
+  components: {
+    AuthForm
+  },
+
   data () {
     return {
       loginMessage: 'Don\'t have an account?',
@@ -67,10 +73,6 @@ export default {
         authMessage: isLogin ? loginMessage : registerMessage
       }
     }
-  },
-
-  components: {
-    AuthForm
   }
 }
 </script>
